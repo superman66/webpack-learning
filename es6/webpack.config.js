@@ -1,13 +1,14 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   entry: {
-    index: './index.js',
-    content: './blog.js'
+    index: './index.js'
   },
   output: {
-    path: __dirname + '/dist',
-    filename: 'bundle.[name].js'
+    path: __dirname + '/dist',  // webpack build 路径
+    filename: 'bundle.[hash].js'
   },
   module: {
     loaders: [
@@ -16,6 +17,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new HtmlWebpackPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
